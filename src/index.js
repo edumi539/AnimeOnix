@@ -4,20 +4,19 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
-import HeaderBar from "./components/Header/header";
-import PersonagensScreen from "./views/PersonagensScreen";
 import MainLayout from "./Layout/MainLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DetailsPage from "./views/DetailsPage";
+import AnimesDaTemporada from "./views/AnimesDaTemporadaScreen";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hist}>
       <Switch>
-        <Route path="/main">
-          <MainLayout />
-        </Route>
-        <Redirect from="/" to="/main/home/" />
+        <Route path="/seasonanimes/" component={AnimesDaTemporada} />
+        <Route path="/anime/:animeId" component={DetailsPage} />
+        <Redirect exact from="/" to="/seasonanimes/!#" />
       </Switch>
     </Router>
   </Provider>,

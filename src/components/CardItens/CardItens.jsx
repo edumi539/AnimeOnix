@@ -1,28 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    Label,
-    FormGroup,
-    Input,
-    Table,
-    Row,
-    Col,
-    UncontrolledTooltip,
-    CardImg,
-    CardText,
-    CardFooter
-} from "reactstrap";
+import "./CardItens.css"
+import { Link } from 'react-router-dom'
 import { useEffect } from 'react';
+import { Row } from "reactstrap"
 
 const CardItens = ({ loading, Animes }) => {
 
@@ -30,30 +11,39 @@ const CardItens = ({ loading, Animes }) => {
         return <h2>Loading...</h2>
     }
 
+    const changeColor = (items) => {
+
+        if (items > 7.0) {
+            return "green"
+        }
+
+        return "red"
+
+    }
+
     return (
 
         <Row>
             {Animes.map(items => {
                 return (
-                    <Card key={items.mal_id} style={{ width: '20rem', margin: '20px' }} className="text-center">
-                        <CardImg top src={items.image_url} alt={items.image_url} />
-                        <CardBody>
-                            <CardTitle><p className="h2">{items.title}</p></CardTitle>
-                            <CardText>
-
-                            </CardText>
-                        </CardBody>
-                        <CardFooter>
-                            <p className="h4 text-left">Gêneros:
+                    <div key={items.mal_id} className="card shadow-lg p-3 mb-5 bg-white rounded">
+                        <img top src={items.image_url} alt={items.image_url} className="card-img-top" />
+                        <div className="card-body">
+                            <h2 className="card-title text-center">{items.title}</h2>
+                            <p className="card-text">
+                                <h5 className="generosText text-left">Gêneros:
                                     {items.genres.map(subItens => {
-                                return ` ${subItens.name}`
-                            })}
+                                    return ` ${subItens.name}`
+                                })}
+                                </h5>
                             </p>
-                            <p className="h4 text-left">Nº Episódios: {items.episodes} </p>
-                            <p className="h3 text-right">Nota: {items.score}</p>
-                            <Button onClick={() => window.location.href = items.url} className="animation-on-hover" color="primary"> + Detalhes</Button>
-                        </CardFooter>
-                    </Card>
+                        </div>
+                        <div className="card-footer text-center text-muted">
+                            <h5 className=" text-left">Nº Episódios: {items.episodes} </h5>
+                            <h3 className=" text-nota text-right" style={{ color: `${changeColor(items.score)}` }} >Nota: {items.score || "Sem nota"}</h3>
+                            <Link to={`/anime/${items.mal_id}`} className="btn btn-primary" color="primary"> + Detalhes</Link>
+                        </div>
+                    </div>
                 )
             })}
         </Row>

@@ -1,0 +1,8 @@
+.row{
+    justify-content: center;
+    flex-direction: row;
+}
+.page-title{
+    margin-left: 35px;
+    margin-top: 35px;
+}

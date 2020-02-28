@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import CardItens from '../components/CardItens/CardItens'
 import PaginationComponent from '../components/Pagination/Pagination'
+import { Row } from "reactstrap";
+import "./AnimesDaTemporada.css"
+import MainLayout from "../Layout/MainLayout";
 
-export default function PersonagensScreen() {
+export default function AnimesDaTemporada() {
     const ReducerJikan = useSelector(state => state.ReducerJikan.Animes)
     const [loading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,9 +29,13 @@ export default function PersonagensScreen() {
     const paginate = (pagenumber) => setCurrentPage(pagenumber)
 
     return (
-        <div className="content">
-            <CardItens loading={loading} Animes={Pagination(ReducerJikan)} />
-            <PaginationComponent itensPerPage={itensPerPage} totalItens={ReducerJikan.length} paginate={paginate} />
-        </div>
+        <div>
+            <MainLayout />
+            <h1 className="page-title">Animes of Season</h1>
+            <Row className="content">
+                <CardItens loading={loading} Animes={Pagination(ReducerJikan)} />
+                <PaginationComponent itensPerPage={itensPerPage} totalItens={ReducerJikan.length} paginate={paginate} />
+            </Row>
+        </div >
     );
 }
