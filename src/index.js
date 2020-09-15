@@ -4,7 +4,6 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
-import MainLayout from "./Layout/MainLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DetailsPage from "./views/DetailsPage";
 import AnimesDaTemporada from "./views/AnimesDaTemporadaScreen";
