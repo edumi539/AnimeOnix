@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { reactotronRedux } from "reactotron-redux";
 import {
   Collapse,
   Navbar,
@@ -11,13 +14,23 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+  NavbarText,
 } from "reactstrap";
+import { TextSearchSubmit } from "../../Actions/ListAnimesOfSeasonAction";
 import "./header.css";
 const HeaderBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [text, onChangeText] = useState("");
+  const dispatch = useDispatch();
   const toggle = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    dispatch(TextSearchSubmit(text));
+  }, [text]);
+
+  function handleChange(e) {
+    onChangeText(e.target.value);
+  }
 
   return (
     <div>
@@ -29,35 +42,22 @@ const HeaderBar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="!#">
                 Home
                 <span className="sr-only">(current)</span>
-              </a>
-            </li>
-
-            <li className="nav-item">
-              <a class="nav-link" href="#">
-                Features
-              </a>
-            </li>
-
-            <li className="nav-item active">
-              <a class="nav-link" href="#">
-                Pricing
               </a>
             </li>
           </ul>
         </div>
         <form className="form-inline">
           <input
+            value={text}
+            onChange={(e) => handleChange(e)}
             className="form-control mr-sm-2"
             type="search"
-            placeholder="Search"
+            placeholder="Pesquisar"
             aria-label="Search"
           />
-          <button className="btn btn-outline-light my-2 my-sm-0" type="submit">
-            Search
-          </button>
         </form>
       </nav>
     </div>

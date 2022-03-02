@@ -1,0 +1,25 @@
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.row {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+.content-cards {
+  margin: 15px;
+  width: 100%;
+  background: lightgray;
+}

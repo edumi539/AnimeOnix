@@ -51,9 +51,9 @@ const PaginationComp = ({ itensPerPage, totalItens, paginate }) => {
             <span className="sr-only">Next</span>
           </a>
         </li>
-        <PaginationItem>
+        {/* <PaginationItem>
           <PaginationLink last href="!#" />
-        </PaginationItem>
+        </PaginationItem> */}
       </ul>
     </nav>
   );
