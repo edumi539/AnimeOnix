@@ -1,12 +1,17 @@
-.navbar{
-    background-color: #083D77;
+.navbar {
+  background-color: #083d77;
 }
-.navbar-brand{
-    color: #EEEEEE!important;
+.navbar-brand {
+  color: #eeeeee !important;
 }
-.nav-link{
-    color: #EEEEEE
+.nav-link {
+  color: #eeeeee;
 }
-.form-control{
-    background-color: #EEEEEE;
+.form-control {
+  background-color: #eeeeee;
+}
+.icon-search {
+  position: absolute;
+  margin-left: 11rem;
+  color: gray;
 }
