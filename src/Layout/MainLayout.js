@@ -5,7 +5,6 @@ const MainLayout = () => {
   return (
     <>
       <HeaderBar />
-      <PersonagensScreen />
     </>
   );
 };

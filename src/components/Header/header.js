@@ -7,7 +7,6 @@ import { TextSearchSubmit } from "../../Actions/ListAnimesOfSeasonAction";
 import "./header.css";
 const HeaderBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [hasFocus, setFocus] = useState(false);
   const [text, onChangeText] = useState("");
   const dispatch = useDispatch();
   const toggle = () => setIsOpen(!isOpen);
@@ -39,8 +38,6 @@ const HeaderBar = () => {
         </div>
         <form className="form-inline">
           <input
-            onFocus={() => setFocus(true)}
-            onBlur={() => setFocus(false)}
             value={text}
             onChange={(e) => handleChange(e)}
             className="form-control mr-sm-2"
@@ -48,7 +45,7 @@ const HeaderBar = () => {
             placeholder="Pesquisar"
             aria-label="Search"
           />
-          {!hasFocus ? <BsSearch className="icon-search" /> : null}
+          {!text ? <BsSearch className="icon-search" /> : null}
         </form>
       </nav>
     </div>
