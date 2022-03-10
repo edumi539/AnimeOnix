@@ -7,10 +7,10 @@ import {
   CardTitle,
   CardImg,
   CardText,
-  CardFooter,
+  CardFooter
 } from "reactstrap";
 
-const CardItens = ({ loading, Animes, ElementsReducer }) => {
+const CardItens = ({ loading, Animes, ElementsReducer, History }) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
@@ -31,17 +31,20 @@ const CardItens = ({ loading, Animes, ElementsReducer }) => {
 
   return (
     <div className="content-cards row">
-      {
-        Animes.filter((items) =>
-          items.title.includes(ElementsReducer.searchtextinput)
-        ).map((filteredPerson) => {
-          return (
+      {Animes.filter((items) =>
+        items.title.includes(ElementsReducer.searchtextinput)
+      ).map((filteredPerson) => {
+        return (
           <Card
             key={filteredPerson.mal_id}
             style={{ width: "25rem", marginTop: "40px", marginBottom: "40px" }}
             className="text-center"
           >
-            <CardImg top src={filteredPerson.image_url} alt={filteredPerson.image_url} />
+            <CardImg
+              top
+              src={filteredPerson.image_url}
+              alt={filteredPerson.image_url}
+            />
             <CardBody>
               <CardTitle>
                 <p className="h2">{truncatetext(filteredPerson.title)}</p>
@@ -55,10 +58,18 @@ const CardItens = ({ loading, Animes, ElementsReducer }) => {
                   return ` ${subItens.name}`;
                 })}
               </p>
-              <p className="h4 text-left">Nº Episódios: {filteredPerson.episodes} </p>
-              <p className="h3 text-right">Nota: {colorbyrate(filteredPerson.score)}</p>
+              <p className="h4 text-left">
+                Nº Episódios: {filteredPerson.episodes}{" "}
+              </p>
+              <p className="h3 text-right">
+                Nota: {colorbyrate(filteredPerson.score)}
+              </p>
               <Button
-                onClick={() => (window.location.href = filteredPerson.url)}
+                onClick={() =>
+                  History.push(`/${filteredPerson.mal_id}`, {
+                    params: filteredPerson
+                  })
+                }
                 className="animation-on-hover"
                 color="primary"
               >
@@ -68,8 +79,7 @@ const CardItens = ({ loading, Animes, ElementsReducer }) => {
             </CardFooter>
           </Card>
         );
-        })
-      }
+      })}
     </div>
   );
 };

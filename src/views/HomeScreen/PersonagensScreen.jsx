@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import CardItens from "../../components/CardItens/CardItens";
 import PaginationComponent from "../../components/Pagination/Pagination";
 import "./index.css";
+import { useHistory } from "react-router-dom";
 
 export default function PersonagensScreen() {
   const ReducerJikan = useSelector((state) => state.ReducerJikan.Animes);
   const ReducerElements = useSelector((state) => state.ElementsReducer);
+  const history = useHistory();
   const [loading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itensPerPage] = useState(8);
@@ -36,6 +38,7 @@ export default function PersonagensScreen() {
         loading={loading}
         Animes={Pagination(ReducerJikan)}
         ElementsReducer={ReducerElements}
+        History={history}
       />
       <PaginationComponent
         itensPerPage={itensPerPage}
