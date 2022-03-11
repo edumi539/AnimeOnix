@@ -22,14 +22,14 @@ const HeaderBar = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg" navbar-light bg-light>
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           Anime Onix
         </a>
 
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a class="nav-link" href="!#">
+              <a class="nav-link" href="/">
                 Home
                 <span className="sr-only">(current)</span>
               </a>
