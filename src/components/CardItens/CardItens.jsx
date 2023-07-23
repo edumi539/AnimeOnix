@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import {
   Button,
   Card,
@@ -7,17 +6,15 @@ import {
   CardTitle,
   CardImg,
   CardText,
-  CardFooter
+  CardFooter,
 } from "reactstrap";
 
-const CardItens = ({ loading, Animes, ElementsReducer, History }) => {
+const CardItens = ({ loading, ElementsReducer, Navigate, Animes }) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
 
-  console.log(Animes);
-
-  function truncatetext(str) {
+  function truncatetext(str, type) {
     return str.length > 10 ? str.substring(0, 18) + "..." : str;
   }
 
@@ -34,42 +31,46 @@ const CardItens = ({ loading, Animes, ElementsReducer, History }) => {
       {Animes.filter((items) =>
         items.title.includes(ElementsReducer.searchtextinput)
       ).map((filteredPerson) => {
+        const {
+          mal_id,
+          title,
+          genres,
+          episodes,
+          score,
+          images: {
+            jpg: { image_url },
+          },
+        } = filteredPerson;
+
         return (
           <Card
-            key={filteredPerson.mal_id}
+            key={mal_id}
             style={{ width: "25rem", marginTop: "40px", marginBottom: "40px" }}
             className="text-center"
           >
             <CardImg
+              style={{
+                width: "100%",
+                height: "350px", // Set a fixed height for the image container
+                objectFit: "cover", // Ensure the image fills the container while maintaining its aspect ratio
+                paddingTop: "10px",
+              }}
               top
-              src={filteredPerson.image_url}
-              alt={filteredPerson.image_url}
+              src={image_url}
+              alt={image_url}
             />
             <CardBody>
               <CardTitle>
-                <p className="h2">{truncatetext(filteredPerson.title)}</p>
+                <p className="h2">{truncatetext(title)}</p>
               </CardTitle>
               <CardText></CardText>
             </CardBody>
-            <CardFooter>
-              <p className="h4 text-left">
-                Gêneros:
-                {filteredPerson.genres.map((subItens) => {
-                  return ` ${subItens.name}`;
-                })}
-              </p>
-              <p className="h4 text-left">
-                Nº Episódios: {filteredPerson.episodes}{" "}
-              </p>
-              <p className="h3 text-right">
-                Nota: {colorbyrate(filteredPerson.score)}
-              </p>
+            <CardFooter style={{ marginBottom: "10px" }}>
+              <p className="h4 text-left">Gêneros: {genres[0].name}</p>
+              <p className="h4 text-left">Nº Episódios: {episodes} </p>
+              <p className="h3 text-right">Nota: {colorbyrate(score)}</p>
               <Button
-                onClick={() =>
-                  History.push(`/${filteredPerson.mal_id}`, {
-                    params: filteredPerson
-                  })
-                }
+                onClick={() => Navigate(`/${mal_id}`)}
                 className="animation-on-hover"
                 color="primary"
               >

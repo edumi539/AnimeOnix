@@ -1,26 +1,15 @@
 import React from "react";
-import {
-  Redirect,
-  Route,
-  Router,
-  Switch,
-  useRouteMatch
-} from "react-router-dom";
-import MainLayout from "../Layout/MainLayout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetailScreen from "../views/DetailScreen/DetailScreen";
 import PersonagensScreen from "../views/HomeScreen/PersonagensScreen";
 
-export default function Routes({ hist }) {
+export default function Rotas() {
   return (
-    <Router history={hist}>
-      <Switch>
-        <Route exact path="/">
-          <PersonagensScreen />
-        </Route>
-        <Route path="/:id">
-          <DetailScreen />
-        </Route>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PersonagensScreen />} />
+        <Route path="/:id" element={<DetailScreen />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

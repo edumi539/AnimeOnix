@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { reactotronRedux } from "reactotron-redux";
 import { BsSearch } from "react-icons/bs";
 import { TextSearchSubmit } from "../../Actions/ListAnimesOfSeasonAction";
 import "./header.css";
@@ -29,23 +28,23 @@ const HeaderBar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a class="nav-link" href="/">
+              <a class="nav-link home" href="/">
                 Home
-                <span className="sr-only">(current)</span>
               </a>
             </li>
           </ul>
         </div>
         <form className="form-inline">
-          <input
-            value={text}
-            onChange={(e) => handleChange(e)}
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Pesquisar"
-            aria-label="Search"
-          />
-          {!text ? <BsSearch className="icon-search" /> : null}
+          <div>
+            <input
+              value={text}
+              onChange={(e) => handleChange(e)}
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+            />
+          </div>
         </form>
       </nav>
     </div>

@@ -2,10 +2,13 @@
   background-color: #083d77;
 }
 .navbar-brand {
-  color: #eeeeee !important;
+  padding-left: 20px;
+  color: white !important;
 }
 .nav-link {
-  color: #eeeeee;
+  &.home {
+    color: white;
+  }
 }
 .form-control {
   background-color: #eeeeee;
@@ -14,4 +17,7 @@
   position: absolute;
   margin-left: 11rem;
   color: gray;
+}
+.form-inline{
+  padding-right: 20px;
 }

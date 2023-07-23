@@ -7,10 +7,11 @@ import {
 } from "../types/ActionTypes";
 import JikanApi from "../requests/JikanAnimes";
 export const ListAnimesOfSeasonAction = () => (dispatch) => {
-  dispatch(ApiJikanFetching());
+  dispatch(ApiJikanFetching(true));
   const Promise = JikanApi();
   Promise.then((response) => {
-    const data = response.data.anime;
+    const { data } = response.data;
+    console.onix.log("data:", data);
     dispatch(ApiJikanFetching(false));
     dispatch(ApiJikanSuccess(data));
   }).catch(dispatch(ApiJikanFailed()));

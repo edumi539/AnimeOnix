@@ -1,18 +1,16 @@
-import "../src/Config/ReactotronConfig";
+import "../src/config/ReactotronConfig";
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
-import MainLayout from "./Layout/MainLayout";
+import MainLayout from "./layout/MainLayout";
+import Rotas from "./routes";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Routes from "./Routes";
-const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
     <MainLayout />
-    <Routes hist={hist} />
+    <Rotas />
   </Provider>,
   document.getElementById("root")
 );
