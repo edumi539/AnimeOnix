@@ -11,7 +11,6 @@ export const ListAnimesOfSeasonAction = () => (dispatch) => {
   const Promise = JikanApi();
   Promise.then((response) => {
     const { data } = response.data;
-    console.onix.log("data:", data);
     dispatch(ApiJikanFetching(false));
     dispatch(ApiJikanSuccess(data));
   }).catch(dispatch(ApiJikanFailed()));

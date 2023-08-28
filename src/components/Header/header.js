@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import { TextSearchSubmit } from "../../Actions/ListAnimesOfSeasonAction";
+import { TextSearchSubmit } from "../../actions/ListAnimesOfSeasonAction";
 import "./header.css";
 const HeaderBar = () => {
   const [isOpen, setIsOpen] = useState(false);

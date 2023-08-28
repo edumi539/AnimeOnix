@@ -1,4 +1,5 @@
 import React from "react";
+import { createSearchParams } from "react-router-dom";
 import {
   Button,
   Card,
@@ -17,6 +18,15 @@ const CardItens = ({ loading, ElementsReducer, Navigate, Animes }) => {
   function truncatetext(str, type) {
     return str.length > 10 ? str.substring(0, 18) + "..." : str;
   }
+
+  const generateSlug = (str) => {
+    return str
+      .toLowerCase() // Convert the string to lowercase
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/[^\w-]+/g, "") // Remove any non-word characters (excluding hyphens)
+      .replace(/--+/g, "-") // Replace multiple consecutive hyphens with a single hyphen
+      .trim(); // Remove leading and trailing spaces if any
+  };
 
   function colorbyrate(score) {
     return score >= 6.0 ? (
@@ -37,6 +47,7 @@ const CardItens = ({ loading, ElementsReducer, Navigate, Animes }) => {
           genres,
           episodes,
           score,
+          synopsis,
           images: {
             jpg: { image_url },
           },
@@ -70,7 +81,15 @@ const CardItens = ({ loading, ElementsReducer, Navigate, Animes }) => {
               <p className="h4 text-left">Nº Episódios: {episodes} </p>
               <p className="h3 text-right">Nota: {colorbyrate(score)}</p>
               <Button
-                onClick={() => Navigate(`/${mal_id}`)}
+                onClick={() =>
+                  Navigate({
+                    pathname: `/${generateSlug(title)}`,
+                    search: createSearchParams({
+                      image_url: image_url,
+                      synopsis: synopsis,
+                    }).toString(),
+                  })
+                }
                 className="animation-on-hover"
                 color="primary"
               >

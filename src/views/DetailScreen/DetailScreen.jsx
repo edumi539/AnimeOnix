@@ -1,18 +1,18 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import "./index.css";
 
 export default function DetailScreen() {
-  const location = useLocation();
-  const myParam = location.state.params ? location.state.params : "";
-  console.log(myParam);
+  const [searchparams] = useSearchParams();
+  const image_url = searchparams.get("image_url");
+  const synopsis = searchparams.get("synopsis");
 
   return (
     <div className="container-details">
-      <img src={myParam.image_url} className="img-details" />
+      <img src={image_url} className="img-details" />
       <div className="container-synopsis">
         <h5 className="Synopsis">Synopsis</h5>
-        <p className="text-details">{myParam.synopsis}</p>
+        <p className="text-details">{synopsis}</p>
       </div>
     </div>
   );

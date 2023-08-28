@@ -1,4 +1,4 @@
-import { ListAnimesOfSeasonAction } from "../../Actions/ListAnimesOfSeasonAction";
+import { ListAnimesOfSeasonAction } from "../../actions/ListAnimesOfSeasonAction";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardItens from "../../components/CardItens/CardItens";
@@ -13,7 +13,9 @@ export default function PersonagensScreen() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(ListAnimesOfSeasonAction());
+    if (!ReducerJikanData.length) {
+      dispatch(ListAnimesOfSeasonAction());
+    }
   }, []);
 
   useEffect(() => {
